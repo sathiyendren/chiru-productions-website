@@ -1,0 +1,72 @@
+#upcoming { background: var(--black); }
+
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(201,147,58,0.08);
+  border: 1px solid rgba(201,147,58,0.08);
+}
+.upcoming-item {
+  background: var(--black);
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 24px;
+  align-items: start;
+  transition: background 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.upcoming-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--crimson);
+  transition: width 0.3s cubic-bezier(0.19,1,0.22,1);
+}
+.upcoming-item:hover { background: rgba(201,147,58,0.04); }
+.upcoming-item:hover::before { width: 3px; }
+
+.upcoming-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 0.04em;
+  color: rgba(201,147,58,0.2);
+  line-height: 1;
+  transition: color 0.2s;
+}
+.upcoming-item:hover .upcoming-num { color: rgba(201,147,58,0.5); }
+.upcoming-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.upcoming-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--smoke2);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.upcoming-date { color: var(--gold); }
+.upcoming-status {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 1px;
+  white-space: nowrap;
+  align-self: start;
+}
+.status-production { background: rgba(192,21,42,0.15); color: var(--crimson);  border: 1px solid rgba(192,21,42,0.3); }
+.status-post       { background: rgba(201,147,58,0.12); color: var(--gold);    border: 1px solid rgba(201,147,58,0.25); }
+.status-announced  { background: rgba(42,42,53,0.5);    color: var(--smoke2);  border: 1px solid rgba(232,228,220,0.1); }
+.status-complete   { background: rgba(30,120,60,0.12);  color: #5ad68a;        border: 1px solid rgba(30,120,60,0.3); }

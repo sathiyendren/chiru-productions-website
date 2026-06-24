@@ -1,0 +1,124 @@
+/* ─── Page wrapper ──────────────────────────────────────────────── */
+.ip-page {
+  min-height: 100vh;
+  background: var(--black);
+  padding-top: 72px;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────── */
+.ip-hero {
+  position: relative;
+  height: 280px;
+  background: linear-gradient(135deg, #0a080f 0%, #14101a 40%, #0a080f 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.ip-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 60%, rgba(192,21,42,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 25%, rgba(201,147,58,0.10) 0%, transparent 55%);
+}
+.ip-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.25) 0%, rgba(10,10,15,0.72) 100%);
+}
+.ip-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 40px;
+}
+.ip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--smoke);
+  margin-bottom: 12px;
+}
+.ip-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--smoke2);
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+/* ─── Controls bar ──────────────────────────────────────────────── */
+.ip-bar {
+  display: flex;
+  align-items: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(201, 147, 58, 0.1);
+}
+.ip-back-btn {
+  background: none;
+  border: 1px solid rgba(201, 147, 58, 0.2);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ip-back-btn:hover {
+  background: rgba(201, 147, 58, 0.08);
+  border-color: rgba(201, 147, 58, 0.45);
+}
+
+/* ─── Body ──────────────────────────────────────────────────────── */
+.ip-body {
+  padding-top: 64px;
+  padding-bottom: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+/* ─── Section block ─────────────────────────────────────────────── */
+.ip-section {
+  padding: 40px 44px 44px;
+  background: var(--panel);
+  border: 1px solid rgba(201, 147, 58, 0.06);
+  position: relative;
+}
+.ip-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 44px;
+  width: 32px; height: 2px;
+  background: var(--crimson);
+}
+.ip-section-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+.ip-section-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--smoke2);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+/* ─── Fade-in ───────────────────────────────────────────────────── */
+.ip-section.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.19,1,0.22,1), transform 0.6s cubic-bezier(0.19,1,0.22,1); }
+.ip-section.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ip-body { grid-template-columns: 1fr; }
+}

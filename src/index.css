@@ -1,0 +1,158 @@
+/* ─── Reset & Base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:   #0A0A0F;
+  --black2:  #0F0F17;
+  --panel:   #12121A;
+  --steel:   #2A2A35;
+  --steel2:  #3A3A48;
+  --crimson: #C0152A;
+  --crimson2:#E01830;
+  --gold:    #C9933A;
+  --gold2:   #E0AA50;
+  --smoke:   #E8E4DC;
+  --smoke2:  #C8C4BC;
+  --white:   #FFFFFF;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--smoke);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── View Transitions ─────────────────────────────────────────────── */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ─── Utilities ────────────────────────────────────────────────────── */
+.display     { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; line-height: 0.95; }
+.mono        { font-family: 'Courier Prime', monospace; }
+
+.gold-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.section { padding: 96px 0; position: relative; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+.section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--smoke);
+}
+
+.view-all {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s;
+}
+.view-all:hover { gap: 14px; }
+.view-all::after { content: '→'; font-size: 14px; }
+button.view-all { background: none; border: none; padding: 0; cursor: pointer; }
+
+/* ─── Buttons ──────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--crimson);
+  color: var(--white);
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--crimson2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(192,21,42,0.4);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--smoke);
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border: 1px solid rgba(232,228,220,0.3);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── Scroll fade-in ──────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.19,1,0.22,1), transform 0.6s cubic-bezier(0.19,1,0.22,1);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-delay-1 { transition-delay: 0.08s; }
+.fade-in-delay-2 { transition-delay: 0.16s; }
+.fade-in-delay-3 { transition-delay: 0.24s; }
+.fade-in-delay-4 { transition-delay: 0.32s; }
+
+/* ─── Animations ───────────────────────────────────────────────────── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes wave1 { 0%,100%{height:20%}  25%{height:80%}  50%{height:40%}  75%{height:90%} }
+@keyframes wave2 { 0%,100%{height:60%}  25%{height:30%}  50%{height:90%}  75%{height:20%} }
+@keyframes wave3 { 0%,100%{height:40%}  25%{height:100%} 50%{height:20%}  75%{height:70%} }
+@keyframes wave4 { 0%,100%{height:80%}  25%{height:20%}  50%{height:60%}  75%{height:40%} }
+@keyframes wave5 { 0%,100%{height:30%}  25%{height:70%}  50%{height:100%} 75%{height:50%} }

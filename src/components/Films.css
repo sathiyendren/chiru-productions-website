@@ -1,0 +1,147 @@
+.films-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.film-featured { aspect-ratio: unset; min-height: 560px; }
+
+.films-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+}
+
+.film-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16/9;
+}
+.film-featured { aspect-ratio: unset; }
+
+.film-card-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.5s cubic-bezier(0.19,1,0.22,1);
+  overflow: hidden;
+}
+.film-card:hover .film-card-bg { transform: scale(1.06); }
+
+.film-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  /* Desaturate slightly so the gold/crimson palette reads over the photo */
+  filter: saturate(0.7) brightness(0.85);
+  transition: filter 0.4s;
+}
+.film-card:hover .film-card-img {
+  filter: saturate(0.85) brightness(0.9);
+}
+
+.film-bg-1 { background: linear-gradient(135deg, #1a0505 0%, #3d1010 30%, #1a0a05 60%, #0d0508 100%); }
+.film-bg-2 { background: linear-gradient(135deg, #050510 0%, #10102d 30%, #05050f 100%); }
+.film-bg-3 { background: linear-gradient(135deg, #0a0a05 0%, #1e1e08 40%, #0f0a05 100%); }
+.film-bg-4 { background: linear-gradient(135deg, #100505 0%, #2d1010 40%, #0d050a 100%); }
+.film-bg-5 { background: linear-gradient(135deg, #05100a 0%, #102d18 40%, #050f08 100%); }
+
+.film-card-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.film-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(10,10,15,0.9) 100%);
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+.film-card:hover .film-card-overlay { opacity: 0.7; }
+
+.film-play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  width: 64px; height: 64px;
+  background: rgba(192,21,42,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.film-play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 4px;
+}
+.film-card:hover .film-play-btn {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.film-grid-lines {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.film-award {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  z-index: 3;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+
+.film-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 24px 24px;
+  z-index: 2;
+}
+.film-genre {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.film-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.film-title-featured { font-size: 52px; }
+.film-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--smoke2);
+  display: flex;
+  gap: 16px;
+}
+.film-rating { color: var(--gold); }

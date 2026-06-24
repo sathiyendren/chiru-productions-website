@@ -1,0 +1,227 @@
+#audio { background: var(--black); }
+
+.audio-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4px;
+  align-items: start;
+}
+
+/* ─── Tracklist ─────────────────────────────────────────────────── */
+.tracklist {
+  background: var(--panel);
+  border: 1px solid rgba(201,147,58,0.08);
+}
+.tracklist-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(201,147,58,0.08);
+  display: grid;
+  grid-template-columns: 48px 1fr 80px 60px;
+  gap: 16px;
+  align-items: center;
+}
+.tracklist-header-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel2);
+}
+.tracklist-header-label--right { text-align: right; }
+
+.track-row {
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: 48px 1fr 80px 60px;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid rgba(201,147,58,0.05);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.track-row:hover { background: rgba(201,147,58,0.04); }
+.track-row:last-child { border-bottom: none; }
+
+.track-num-wrap { position: relative; width: 28px; height: 28px; margin: 0 auto; }
+.track-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--steel2);
+  text-align: center;
+  line-height: 28px;
+}
+.track-play-btn {
+  position: absolute;
+  inset: 0;
+  width: 28px; height: 28px;
+  background: var(--crimson);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.track-play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent white;
+  margin-left: 2px;
+}
+.track-row:hover .track-num { display: none; }
+.track-row:hover .track-play-btn { display: flex; }
+
+.track-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--smoke);
+}
+.track-film {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--smoke2);
+  margin-top: 2px;
+}
+.track-film-name { color: var(--gold); }
+
+.track-waves {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+.track-wave-bar {
+  width: 2px;
+  background: var(--steel2);
+  border-radius: 1px;
+  transition: background 0.2s;
+}
+.track-row:hover .track-wave-bar { background: var(--crimson); }
+
+.track-duration {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--smoke2);
+  text-align: right;
+}
+
+/* ─── OST Card ──────────────────────────────────────────────────── */
+.ost-card {
+  background: var(--panel);
+  border: 1px solid rgba(201,147,58,0.08);
+  padding: 32px;
+  position: sticky;
+  top: 96px;
+}
+.ost-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.ost-art {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1a0508 0%, #3d101e 40%, #1a0810 100%);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ost-art::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(192,21,42,0.3) 0%, transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(201,147,58,0.2) 0%, transparent 60%);
+}
+.ost-art-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 0.08em;
+  color: rgba(201,147,58,0.3);
+  text-align: center;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.ost-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+  margin-bottom: 4px;
+}
+.ost-composer {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--smoke2);
+  margin-bottom: 24px;
+}
+.ost-composer span { color: var(--gold); }
+
+/* Waveform */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+.waveform-bar {
+  flex: 1;
+  background: var(--crimson);
+  border-radius: 1px;
+  opacity: 0.7;
+  transform-origin: bottom;
+}
+
+.ost-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ost-play {
+  width: 48px; height: 48px;
+  background: var(--crimson);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+.ost-play:hover { background: var(--crimson2); transform: scale(1.05); }
+.ost-play::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent white;
+  margin-left: 3px;
+}
+.ost-track-info { flex: 1; }
+.ost-track-name { font-size: 13px; font-weight: 500; color: var(--smoke); }
+.ost-track-time {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--smoke2);
+}
+.ost-progress {
+  margin-top: 16px;
+  height: 2px;
+  background: var(--steel);
+  border-radius: 1px;
+}
+.ost-progress-fill {
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(90deg, var(--crimson), var(--gold));
+  border-radius: 1px;
+}

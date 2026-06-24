@@ -1,0 +1,228 @@
+/* ─── Page wrapper ──────────────────────────────────────────────── */
+.ann-page {
+  min-height: 100vh;
+  background: var(--black);
+  padding-top: 72px; /* nav height */
+}
+
+/* ─── Hero banner ───────────────────────────────────────────────── */
+.ann-page-hero {
+  position: relative;
+  height: 280px;
+  background:
+    linear-gradient(135deg, #0d0508 0%, #1a0810 40%, #0d0a05 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.ann-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(192,21,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 30%, rgba(201,147,58,0.12) 0%, transparent 55%);
+}
+.ann-page-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.7) 100%);
+}
+.ann-page-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 40px;
+}
+.ann-page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--smoke);
+  margin-bottom: 12px;
+}
+.ann-page-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--smoke2);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* ─── Breadcrumb bar ────────────────────────────────────────────── */
+.ann-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(201, 147, 58, 0.1);
+}
+.ann-back-btn {
+  background: none;
+  border: 1px solid rgba(201, 147, 58, 0.2);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ann-back-btn:hover {
+  background: rgba(201, 147, 58, 0.08);
+  border-color: rgba(201, 147, 58, 0.45);
+}
+.ann-breadcrumb-sep {
+  color: var(--steel2);
+  font-family: 'Courier Prime', monospace;
+}
+.ann-breadcrumb-current {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--smoke2);
+}
+.ann-count {
+  margin-left: auto;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel2);
+}
+
+/* ─── Card grid ─────────────────────────────────────────────────── */
+.ann-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding-top: 32px;
+  padding-bottom: 80px;
+}
+
+/* ─── Card ──────────────────────────────────────────────────────── */
+.ann-card {
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: background 0.2s;
+  border: 1px solid rgba(201, 147, 58, 0.06);
+}
+.ann-card:hover,
+.ann-card:focus-visible {
+  background: rgba(42, 42, 53, 0.6);
+  border-color: rgba(201, 147, 58, 0.18);
+}
+.ann-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Thumbnail */
+.ann-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ann-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(0.7) brightness(0.8);
+  transition: transform 0.5s cubic-bezier(0.19,1,0.22,1), filter 0.3s;
+}
+.ann-card:hover .ann-card-img {
+  transform: scale(1.05);
+  filter: saturate(0.9) brightness(0.9);
+}
+.ann-card-img-tint {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(18,18,26,0.8) 100%);
+}
+.ann-card-tag {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--crimson);
+  padding: 4px 10px;
+}
+
+/* Body */
+.ann-card-body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ann-card-date {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.ann-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--smoke);
+  margin-bottom: 10px;
+}
+.ann-card-excerpt {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--smoke2);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 16px;
+}
+.ann-card-cta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  transition: gap 0.2s;
+}
+.ann-card:hover .ann-card-cta { gap: 13px; }
+
+/* Latest badge on first card */
+.ann-card:first-child .ann-card-tag {
+  background: var(--gold);
+  color: var(--black);
+}
+.ann-card:first-child::after {
+  content: 'Latest';
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 3px 8px;
+}

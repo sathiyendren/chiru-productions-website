@@ -1,0 +1,176 @@
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+}
+
+/* ─── Video Background ────────────────────────────────────────────── */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  /* Desaturate and dim slightly so the cinematic palette dominates */
+  filter: saturate(0.75) brightness(0.72);
+}
+
+/* A flat dark tint sitting directly over the video — keeps the
+   filmstrip strips visible while the video plays underneath */
+.hero-video-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.10);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Overlay ─────────────────────────────────────────────────────── */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(10,10,15,0.05) 0%, rgba(10,10,15,0.45) 70%),
+    linear-gradient(180deg, rgba(10,10,15,0.35) 0%, rgba(10,10,15,0.0) 40%, rgba(10,10,15,0.88) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ─── Sound Toggle Button ─────────────────────────────────────────── */
+.hero-sound-btn {
+  position: absolute;
+  top: 92px;          /* just below the 72px nav */
+  right: 40px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 10, 15, 0.55);
+  border: 1px solid rgba(201, 147, 58, 0.3);
+  color: var(--smoke2);
+  padding: 10px 14px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-family: 'Courier Prime', monospace;
+}
+.hero-sound-btn:hover {
+  background: rgba(192, 21, 42, 0.7);
+  border-color: var(--crimson);
+  color: var(--white);
+}
+
+/* Pulsing gold ring when the hint is showing */
+.hero-sound-btn--hint {
+  border-color: var(--gold);
+  color: var(--gold);
+  animation: sound-hint-pulse 2s ease-in-out infinite;
+}
+@keyframes sound-hint-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 147, 58, 0.5); }
+  50%       { box-shadow: 0 0 0 8px rgba(201, 147, 58, 0); }
+}
+
+.hero-sound-hint {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── Content ─────────────────────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 4;
+  padding: 0 40px 80px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-content--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 10vw, 160px);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  color: var(--smoke);
+  margin-bottom: 28px;
+  text-shadow: 0 4px 60px rgba(0,0,0,0.8);
+}
+.hero-title span { color: var(--crimson); }
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--smoke2);
+  max-width: 500px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.play-icon {
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 9px;
+  border-color: transparent transparent transparent currentColor;
+}
+.hero-stats {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(201,147,58,0.15);
+  padding-top: 28px;
+}
+.hero-stat {
+  padding: 0 36px 0 0;
+  margin-right: 36px;
+  border-right: 1px solid rgba(201,147,58,0.15);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--smoke2);
+  margin-top: 2px;
+}

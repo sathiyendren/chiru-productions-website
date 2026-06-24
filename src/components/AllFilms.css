@@ -1,0 +1,262 @@
+/* ─── Page wrapper ──────────────────────────────────────────────── */
+.af-page {
+  min-height: 100vh;
+  background: var(--black);
+  padding-top: 72px;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────── */
+.af-hero {
+  position: relative;
+  height: 280px;
+  background: linear-gradient(135deg, #080a10 0%, #0f0d1a 40%, #080a10 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.af-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(192,21,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 30%, rgba(201,147,58,0.12) 0%, transparent 55%);
+}
+.af-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.7) 100%);
+}
+.af-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 40px;
+}
+.af-page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--smoke);
+  margin-bottom: 12px;
+}
+.af-page-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--smoke2);
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* ─── Controls bar ──────────────────────────────────────────────── */
+.af-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(201, 147, 58, 0.1);
+}
+
+.af-back-btn {
+  background: none;
+  border: 1px solid rgba(201, 147, 58, 0.2);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.af-back-btn:hover {
+  background: rgba(201, 147, 58, 0.08);
+  border-color: rgba(201, 147, 58, 0.45);
+}
+
+.af-genre-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.af-genre-btn {
+  background: none;
+  border: 1px solid rgba(232, 228, 220, 0.12);
+  color: var(--smoke2);
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.af-genre-btn:hover {
+  border-color: rgba(201, 147, 58, 0.35);
+  color: var(--gold);
+}
+.af-genre-btn--active {
+  border-color: var(--gold);
+  color: var(--black);
+  background: var(--gold);
+}
+
+.af-count {
+  margin-left: auto;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel2);
+  flex-shrink: 0;
+}
+
+/* ─── Grid ──────────────────────────────────────────────────────── */
+.af-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  padding-top: 32px;
+  padding-bottom: 80px;
+}
+
+/* ─── Card ──────────────────────────────────────────────────────── */
+.af-card {
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  border: 1px solid rgba(201, 147, 58, 0.06);
+}
+.af-card:hover {
+  background: rgba(42, 42, 53, 0.7);
+  border-color: rgba(201, 147, 58, 0.18);
+}
+
+/* Poster */
+.af-card-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.af-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.75) brightness(0.8);
+  transition: transform 0.5s cubic-bezier(0.19,1,0.22,1), filter 0.3s;
+}
+.af-card:hover .af-card-img {
+  transform: scale(1.06);
+  filter: saturate(0.95) brightness(0.9);
+}
+.af-card-poster-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+.af-card-poster-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,15,0.85) 100%);
+}
+
+/* Play button */
+.af-card-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.7);
+  background: rgba(10,10,15,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.af-card-play::after {
+  content: '';
+  display: block;
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 15px solid rgba(255,255,255,0.9);
+  margin-left: 3px;
+}
+.af-card:hover .af-card-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Award badge */
+.af-card-award {
+  position: absolute;
+  bottom: 12px; left: 0;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--black);
+  padding: 4px 10px;
+}
+
+/* Info */
+.af-card-info {
+  padding: 14px 16px 18px;
+}
+.af-card-genre {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.af-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: var(--smoke);
+  margin-bottom: 8px;
+}
+.af-card-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--smoke2);
+}
+.af-card-rating {
+  color: var(--gold);
+  margin-left: auto;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .af-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .af-grid { grid-template-columns: repeat(2, 1fr); }
+  .af-controls { gap: 10px; }
+}
+@media (max-width: 480px) {
+  .af-grid { grid-template-columns: 1fr; }
+}
