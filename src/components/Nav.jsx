@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Nav.css'
+import { trackNavClick, trackMobileMenuToggle, trackExternalLink } from '../utils/analytics'
 
 const HOME_LINKS = [
   ['#films',    'Films'],
@@ -48,7 +49,9 @@ export default function Nav({ page, navigate }) {
   }
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
+    const newState = !isMobileMenuOpen
+    setIsMobileMenuOpen(newState)
+    trackMobileMenuToggle(newState)
   }
 
   const handleMobileLinkClick = () => {

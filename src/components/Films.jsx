@@ -2,9 +2,12 @@ import { useRef, useEffect, useState } from 'react'
 import './Films.css'
 import { FILMS } from '../data'
 import TrailerModal from './TrailerModal'
+import { trackFilmClick, trackTrailerPlay, trackComingSoonView, trackNavClick } from '../utils/analytics'
 
 function FilmCard({ film, featured, onPlay, onComingSoon }) {
   const handleClick = () => {
+    trackFilmClick(film.title, film.genre)
+    
     if (film.comingSoon) {
       onComingSoon(film)
     } else if (film.trailerId) {
@@ -80,6 +83,20 @@ export default function Films({ navigate }) {
   const featured  = FILMS.find(f => f.featured)
   const secondary = FILMS.filter(f => !f.featured).slice(0, 1) // Only show 1 secondary film for total of 2
 
+  // Track trailer plays
+  useEffect(() => {
+    if (active) {
+      trackTrailerPlay(active.title)
+    }
+  }, [active])
+
+  // Track coming soon modal views
+  useEffect(() => {
+    if (comingSoon) {
+      trackComingSoonView(comingSoon.title)
+    }
+  }, [comingSoon])
+
   return (
     <>
       <section id="films" className="section" ref={sectionRef}>
@@ -91,7 +108,10 @@ export default function Films({ navigate }) {
             </div>
             <button
               className="view-all"
-              onClick={() => navigate('films')}
+              onClick={() => {
+                trackNavClick('films_page')
+                navigate('films')
+              }}
             >View Full Films</button>
           </div>
         </div>

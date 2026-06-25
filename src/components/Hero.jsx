@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './Hero.css'
 import chiruLogoVideo from '../assets/chiru-logo.mp4'
+import { trackNavClick, trackExternalLink } from '../utils/analytics'
 
 export default function Hero() {
   const videoRef = useRef(null)
@@ -121,8 +122,16 @@ export default function Hero() {
           and a relentless passion for the art of storytelling.
         </p>
         <div className="hero-actions">
-          <a href="#films" className="btn-primary">Explore Our Films</a>
-          <a href="#reels" className="btn-ghost">
+          <a 
+            href="#films" 
+            className="btn-primary"
+            onClick={() => trackNavClick('explore_films_cta')}
+          >Explore Our Films</a>
+          <a 
+            href="#reels" 
+            className="btn-ghost"
+            onClick={() => trackNavClick('watch_showreel_cta')}
+          >
             <span className="play-icon" />
             Watch Showreel
           </a>

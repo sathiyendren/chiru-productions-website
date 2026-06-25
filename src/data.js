@@ -1,3 +1,10 @@
+// Google Analytics Configuration
+export const GA_CONFIG = {
+  MEASUREMENT_ID: 'G-804K6B0VQN', // Replace with your actual GA4 Measurement ID
+  ENABLED: true, // Set to false to disable analytics
+  DEBUG_MODE: false, // Set to true for debugging
+}
+
 export const FRAME_CONTENT = [
   { title: 'KALAM MAARI', year: '2024' },
   { title: 'IRUL NEEDHI',  year: '2023' },
