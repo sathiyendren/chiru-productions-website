@@ -174,3 +174,171 @@
   color: var(--smoke2);
   margin-top: 2px;
 }
+
+/* ─── Mobile Hero ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  #hero {
+    padding-top: 64px;
+  }
+  
+  .hero-sound-btn {
+    top: 84px;
+    right: 24px;
+    padding: 8px 12px;
+  }
+  
+  .hero-sound-hint {
+    font-size: 9px;
+  }
+  
+  .hero-content {
+    padding: 0 24px 60px;
+  }
+  
+  .hero-eyebrow {
+    font-size: 10px;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+  
+  .hero-eyebrow::before {
+    width: 32px;
+  }
+  
+  .hero-title {
+    font-size: clamp(48px, 12vw, 72px);
+    margin-bottom: 20px;
+  }
+  
+  .hero-subtitle {
+    font-size: 14px;
+    max-width: 400px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+    border-top: none;
+    border-left: 1px solid rgba(201,147,58,0.15);
+    padding-top: 0;
+    padding-left: 20px;
+  }
+  
+  .hero-stat {
+    padding: 0;
+    margin-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(201,147,58,0.15);
+    padding-bottom: 20px;
+  }
+  
+  .hero-stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .hero-stat-num {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 479px) {
+  #hero {
+    padding-top: 60px;
+  }
+  
+  .hero-sound-btn {
+    top: 80px;
+    right: 20px;
+  }
+  
+  .hero-content {
+    padding: 0 20px 48px;
+  }
+  
+  .hero-eyebrow {
+    font-size: 9px;
+    margin-bottom: 14px;
+    gap: 10px;
+  }
+  
+  .hero-eyebrow::before {
+    width: 28px;
+  }
+  
+  .hero-title {
+    font-size: clamp(40px, 10vw, 56px);
+    margin-bottom: 16px;
+  }
+  
+  .hero-subtitle {
+    font-size: 13px;
+    max-width: 320px;
+    margin-bottom: 28px;
+  }
+  
+  .hero-actions {
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-stats {
+    gap: 16px;
+    padding-left: 16px;
+  }
+  
+  .hero-stat {
+    padding-bottom: 16px;
+  }
+  
+  .hero-stat-num {
+    font-size: 32px;
+  }
+  
+  .hero-stat-label {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 374px) {
+  #hero {
+    padding-top: 56px;
+  }
+  
+  .hero-sound-btn {
+    top: 76px;
+    right: 16px;
+  }
+  
+  .hero-content {
+    padding: 0 16px 40px;
+  }
+  
+  .hero-title {
+    font-size: clamp(36px, 9vw, 48px);
+    margin-bottom: 14px;
+  }
+  
+  .hero-subtitle {
+    font-size: 12px;
+    max-width: 280px;
+    margin-bottom: 24px;
+  }
+  
+  .hero-stats {
+    gap: 14px;
+    padding-left: 14px;
+  }
+  
+  .hero-stat-num {
+    font-size: 28px;
+  }
+}

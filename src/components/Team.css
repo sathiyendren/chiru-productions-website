@@ -72,3 +72,116 @@
   border: 1px solid rgba(232,228,220,0.12);
   padding: 3px 8px;
 }
+
+/* ─── Mobile Team ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+  
+  .team-card {
+    padding: 24px 20px;
+  }
+  
+  .team-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .team-name {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+  
+  .team-role {
+    font-size: 9px;
+    margin-bottom: 10px;
+  }
+  
+  .team-bio {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .team-genres {
+    gap: 4px;
+  }
+  
+  .team-genre-tag {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 479px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  
+  .team-card {
+    padding: 20px 16px;
+  }
+  
+  .team-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  
+  .team-name {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  
+  .team-role {
+    font-size: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .team-bio {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  
+  .team-genre-tag {
+    font-size: 7px;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 374px) {
+  .team-card {
+    padding: 16px 12px;
+  }
+  
+  .team-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .team-name {
+    font-size: 14px;
+  }
+  
+  .team-role {
+    font-size: 7px;
+    margin-bottom: 6px;
+  }
+  
+  .team-bio {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .team-genre-tag {
+    font-size: 6px;
+    padding: 1px 4px;
+  }
+}

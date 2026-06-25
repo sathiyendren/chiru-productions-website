@@ -145,3 +145,155 @@
   gap: 16px;
 }
 .film-rating { color: var(--gold); }
+
+/* ─── Mobile Films ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .films-grid {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  
+  .film-featured {
+    min-height: 400px;
+  }
+  
+  .films-secondary {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 3px;
+  }
+  
+  .film-card {
+    aspect-ratio: 16/9;
+  }
+  
+  .film-award {
+    top: 16px;
+    right: 16px;
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+  
+  .film-info {
+    padding: 20px 20px 20px;
+  }
+  
+  .film-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  
+  .film-title-featured {
+    font-size: 42px;
+  }
+  
+  .film-genre {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+  
+  .film-meta {
+    font-size: 10px;
+    gap: 12px;
+  }
+  
+  .film-play-btn {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .film-play-btn::after {
+    border-width: 8px 0 8px 14px;
+    margin-left: 3px;
+  }
+}
+
+@media (max-width: 479px) {
+  .film-featured {
+    min-height: 320px;
+  }
+  
+  .film-award {
+    top: 12px;
+    right: 12px;
+    font-size: 7px;
+    padding: 3px 6px;
+  }
+  
+  .film-info {
+    padding: 16px 16px 16px;
+  }
+  
+  .film-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .film-title-featured {
+    font-size: 36px;
+  }
+  
+  .film-genre {
+    font-size: 8px;
+    margin-bottom: 3px;
+  }
+  
+  .film-meta {
+    font-size: 9px;
+    gap: 10px;
+  }
+  
+  .film-play-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .film-play-btn::after {
+    border-width: 7px 0 7px 12px;
+    margin-left: 2px;
+  }
+}
+
+@media (max-width: 374px) {
+  .film-featured {
+    min-height: 280px;
+  }
+  
+  .film-award {
+    top: 10px;
+    right: 10px;
+    font-size: 6px;
+    padding: 2px 5px;
+  }
+  
+  .film-info {
+    padding: 12px 12px 12px;
+  }
+  
+  .film-title {
+    font-size: 14px;
+  }
+  
+  .film-title-featured {
+    font-size: 30px;
+  }
+  
+  .film-genre {
+    font-size: 7px;
+  }
+  
+  .film-meta {
+    font-size: 8px;
+    gap: 8px;
+  }
+  
+  .film-play-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .film-play-btn::after {
+    border-width: 6px 0 6px 10px;
+    margin-left: 2px;
+  }
+}

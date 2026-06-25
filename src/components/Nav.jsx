@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Nav.css'
 
 const HOME_LINKS = [
@@ -11,6 +11,7 @@ const HOME_LINKS = [
 
 export default function Nav({ page, navigate }) {
   const navRef = useRef(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Scroll-based active link + background darkening — only on home page
   useEffect(() => {
@@ -43,6 +44,15 @@ export default function Nav({ page, navigate }) {
   const handleLogoClick = (e) => {
     e.preventDefault()
     navigate('home')
+    setIsMobileMenuOpen(false)
+  }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const handleMobileLinkClick = () => {
+    setIsMobileMenuOpen(false)
   }
 
   return (
@@ -90,7 +100,72 @@ export default function Nav({ page, navigate }) {
         </li>
       </ul>
 
+      {/* Mobile menu toggle button */}
+      <button 
+        className="nav-mobile-toggle" 
+        onClick={toggleMobileMenu}
+        aria-label="Toggle mobile menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <a href="https://in.bookmyshow.com" target="_blank" rel="noopener noreferrer" className="nav-cta">Book Screening</a>
+
+      {/* Mobile menu overlay */}
+      <div className={`nav-mobile-menu ${isMobileMenuOpen ? 'nav-mobile-menu--open' : ''}`}>
+        <ul className="nav-mobile-links">
+          {/* Home section anchor links */}
+          {HOME_LINKS.map(([href, label]) => (
+            <li key={href}>
+              <a
+                href={href}
+                data-anchor="true"
+                onClick={(e) => {
+                  handleMobileLinkClick()
+                  if (page !== 'home') {
+                    e.preventDefault()
+                    navigate('home')
+                    // Let the browser scroll after the home page renders
+                    setTimeout(() => {
+                      const id = href.slice(1)
+                      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+                    }, 80)
+                  }
+                }}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+
+          {/* Announcements page link */}
+          <li>
+            <a
+              href="#announcements"
+              className={page === 'announcements' ? 'nav-link--active' : ''}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                navigate('announcements')
+                handleMobileLinkClick()
+              }}
+            >
+              Announcements
+            </a>
+          </li>
+        </ul>
+
+        <a 
+          href="https://in.bookmyshow.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="nav-mobile-cta"
+          onClick={handleMobileLinkClick}
+        >
+          Book Screening
+        </a>
+      </div>
     </nav>
   )
 }

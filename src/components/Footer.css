@@ -103,3 +103,177 @@ footer {
   transition: color 0.2s;
 }
 .footer-legal a:hover { color: var(--smoke2); }
+
+/* ─── Mobile Footer ───────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  footer {
+    padding: 48px 0 32px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  
+  .footer-logo {
+    font-size: 28px;
+  }
+  
+  .footer-desc {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  
+  .footer-col-title {
+    font-size: 11px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+  }
+  
+  .footer-links {
+    gap: 8px;
+  }
+  
+  .footer-links a {
+    font-size: 14px;
+  }
+  
+  .footer-social {
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .social-btn {
+    width: 40px; height: 40px;
+    font-size: 12px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 24px;
+  }
+  
+  .footer-copy {
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .footer-legal {
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .footer-legal a {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 479px) {
+  footer {
+    padding: 40px 0 28px;
+  }
+  
+  .footer-grid {
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+  
+  .footer-logo {
+    font-size: 26px;
+  }
+  
+  .footer-desc {
+    font-size: 13px;
+  }
+  
+  .footer-col-title {
+    font-size: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+  
+  .footer-links a {
+    font-size: 13px;
+  }
+  
+  .footer-social {
+    margin-top: 16px;
+    gap: 8px;
+  }
+  
+  .social-btn {
+    width: 36px; height: 36px;
+    font-size: 11px;
+  }
+  
+  .footer-bottom {
+    gap: 16px;
+    padding-top: 20px;
+  }
+  
+  .footer-copy {
+    font-size: 9px;
+  }
+  
+  .footer-legal {
+    gap: 16px;
+  }
+  
+  .footer-legal a {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 374px) {
+  footer {
+    padding: 32px 0 24px;
+  }
+  
+  .footer-grid {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  
+  .footer-logo {
+    font-size: 24px;
+  }
+  
+  .footer-desc {
+    font-size: 12px;
+  }
+  
+  .footer-col-title {
+    font-size: 9px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+  }
+  
+  .footer-links a {
+    font-size: 12px;
+  }
+  
+  .footer-social {
+    margin-top: 12px;
+    gap: 6px;
+  }
+  
+  .social-btn {
+    width: 32px; height: 32px;
+    font-size: 10px;
+  }
+  
+  .footer-bottom {
+    gap: 12px;
+    padding-top: 16px;
+  }
+  
+  .footer-copy {
+    font-size: 8px;
+  }
+  
+  .footer-legal {
+    gap: 12px;
+  }
+}
