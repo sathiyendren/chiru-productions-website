@@ -3,12 +3,20 @@ import './Films.css'
 import { FILMS } from '../data'
 import TrailerModal from './TrailerModal'
 
-function FilmCard({ film, featured, onPlay }) {
+function FilmCard({ film, featured, onPlay, onComingSoon }) {
+  const handleClick = () => {
+    if (film.comingSoon) {
+      onComingSoon(film)
+    } else if (film.trailerId) {
+      onPlay(film)
+    }
+  }
+
   return (
     <div
       className={`film-card${featured ? ' film-featured' : ''}`}
-      onClick={() => film.trailerId && onPlay(film)}
-      style={{ cursor: film.trailerId ? 'pointer' : 'default' }}
+      onClick={handleClick}
+      style={{ cursor: (film.trailerId || film.comingSoon) ? 'pointer' : 'default' }}
     >
       <div className={`film-card-bg ${film.bgClass}`}>
         {film.image && (
@@ -23,7 +31,7 @@ function FilmCard({ film, featured, onPlay }) {
       </div>
       <div className="film-card-overlay" />
       {film.award && <div className="film-award">{film.award}</div>}
-      {film.trailerId && <div className="film-play-btn" aria-hidden="true" />}
+      {film.trailerId && !film.comingSoon && <div className="film-play-btn" aria-hidden="true" />}
       {featured && (
         <svg className="film-grid-lines" viewBox="0 0 560 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <line x1="0" y1="140" x2="560" y2="140" stroke="#C9933A" strokeWidth="0.5"/>
@@ -53,6 +61,7 @@ function FilmCard({ film, featured, onPlay }) {
 export default function Films({ navigate }) {
   const sectionRef = useRef(null)
   const [active, setActive] = useState(null) // { trailerId, title }
+  const [comingSoon, setComingSoon] = useState(null) // { title }
 
   useEffect(() => {
     const el = sectionRef.current
@@ -69,7 +78,7 @@ export default function Films({ navigate }) {
   }, [])
 
   const featured  = FILMS.find(f => f.featured)
-  const secondary = FILMS.filter(f => !f.featured)
+  const secondary = FILMS.filter(f => !f.featured).slice(0, 1) // Only show 1 secondary film for total of 2
 
   return (
     <>
@@ -87,10 +96,10 @@ export default function Films({ navigate }) {
           </div>
         </div>
         <div className="films-grid fade-in">
-          <FilmCard film={featured} featured onPlay={f => setActive(f)} />
+          <FilmCard film={featured} featured onPlay={f => setActive(f)} onComingSoon={f => setComingSoon(f)} />
           <div className="films-secondary">
             {secondary.map(film => (
-              <FilmCard key={film.id} film={film} onPlay={f => setActive(f)} />
+              <FilmCard key={film.id} film={film} onPlay={f => setActive(f)} onComingSoon={f => setComingSoon(f)} />
             ))}
           </div>
         </div>
@@ -102,6 +111,29 @@ export default function Films({ navigate }) {
           title={active.title}
           onClose={() => setActive(null)}
         />
+      )}
+
+      {comingSoon && (
+        <div className="coming-soon-modal" onClick={() => setComingSoon(null)}>
+          <div className="coming-soon-content" onClick={e => e.stopPropagation()}>
+            <button className="coming-soon-close" onClick={() => setComingSoon(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <div className="coming-soon-icon">🎬</div>
+            <h3 className="coming-soon-title">Coming Soon</h3>
+            <p className="coming-soon-text">
+              {comingSoon.title} is currently in production and will be available soon.
+              <br /><br />
+              Stay tuned for updates!
+            </p>
+            <button className="coming-soon-btn" onClick={() => setComingSoon(null)}>
+              Got it
+            </button>
+          </div>
+        </div>
       )}
     </>
   )

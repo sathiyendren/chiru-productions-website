@@ -13,9 +13,9 @@ export default function Hero() {
   const [showHint, setShowHint]     = useState(true)      // "click to enable sound" hint
   const [showContent, setShowContent] = useState(false)   // hero content appears after 10s
 
-  // ── Show all hero content after 10 seconds ──────────────────────────
+  // ── Show all hero content after 8 seconds ──────────────────────────
   useEffect(() => {
-    const t = setTimeout(() => setShowContent(true), 5000)
+    const t = setTimeout(() => setShowContent(true), 8000)
     return () => clearTimeout(t)
   }, [])
 

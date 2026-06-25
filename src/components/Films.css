@@ -146,6 +146,91 @@
 }
 .film-rating { color: var(--gold); }
 
+/* ─── Coming Soon Modal ───────────────────────────────────────────── */
+.coming-soon-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.coming-soon-content {
+  background: var(--black);
+  border: 1px solid rgba(201, 147, 58, 0.3);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.coming-soon-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--smoke2);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.coming-soon-close:hover {
+  background: rgba(201, 147, 58, 0.1);
+  color: var(--gold);
+}
+
+.coming-soon-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.coming-soon-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.coming-soon-text {
+  color: var(--smoke2);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.coming-soon-btn {
+  background: var(--crimson);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.coming-soon-btn:hover {
+  background: var(--crimson2);
+  transform: translateY(-2px);
+}
+
 /* ─── Mobile Films ─────────────────────────────────────────────────── */
 @media (max-width: 767px) {
   .films-grid {

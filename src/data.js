@@ -44,8 +44,7 @@ export const FILMS = [
     rating: '8.6',
     bgClass: 'film-bg-2',
     image: 'https://picsum.photos/seed/irulneedhi/640/360',
-    // Sintel — Blender Foundation (dark & atmospheric, suits thriller)
-    trailerId: 'eRsGyueVLvQ',
+    comingSoon: true,
   },
   {
     id: 3,
