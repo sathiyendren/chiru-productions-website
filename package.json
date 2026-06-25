@@ -1,5 +1,6 @@
 {
   "name": "chiru-productions",
+  "homepage": "https://sathiyendren.github.io/chiru-productions-website",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,7 +11,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext js,jsx --fix",
     "analyze": "vite-bundle-analyzer dist/stats.html",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "start": "vite",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -18,12 +21,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.2",
-    "terser": "^5.34.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.11"
+    "eslint-plugin-react-refresh": "^0.4.11",
+    "gh-pages": "^6.3.0",
+    "terser": "^5.34.1",
+    "vite": "^5.4.2"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.0.0"
