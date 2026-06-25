@@ -3,26 +3,41 @@ import { GA_CONFIG } from '../data'
 
 export const GA_MEASUREMENT_ID = GA_CONFIG.MEASUREMENT_ID;
 
-// Check if analytics is enabled
+// Check if analytics is enabled and gtag is properly loaded
 const isAnalyticsEnabled = () => {
-  return GA_CONFIG.ENABLED && typeof window !== 'undefined' && window.gtag;
+  try {
+    return GA_CONFIG.ENABLED && 
+           typeof window !== 'undefined' && 
+           typeof window.gtag === 'function' &&
+           !window.gtag.toString().includes('Command not allowed');
+  } catch (error) {
+    return false;
+  }
 };
 
 // Track page views
 export const trackPageView = (path) => {
-  if (isAnalyticsEnabled()) {
-    const config = { page_path: path };
-    if (GA_CONFIG.DEBUG_MODE) {
-      config.debug_mode = true;
+  try {
+    if (isAnalyticsEnabled()) {
+      const config = { page_path: path };
+      if (GA_CONFIG.DEBUG_MODE) {
+        config.debug_mode = true;
+      }
+      window.gtag('config', GA_MEASUREMENT_ID, config);
     }
-    window.gtag('config', GA_MEASUREMENT_ID, config);
+  } catch (error) {
+    // Silently fail to avoid console errors
   }
 };
 
 // Track custom events
 export const trackEvent = (eventName, parameters = {}) => {
-  if (isAnalyticsEnabled()) {
-    window.gtag('event', eventName, parameters);
+  try {
+    if (isAnalyticsEnabled()) {
+      window.gtag('event', eventName, parameters);
+    }
+  } catch (error) {
+    // Silently fail to avoid console errors
   }
 };
 
