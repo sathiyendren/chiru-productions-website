@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: process.env.VERCEL ? '/' : '/chiru-productions-website/',
+  base: '/',
   plugins: [react()],
   build: {
     target: 'es2015',
