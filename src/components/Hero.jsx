@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './Hero.css'
-import { HERO_CONFIG } from '../data'
 import chiruLogoVideo from '../assets/chiru-logo.mp4'
 import { trackNavClick, trackExternalLink } from '../utils/analytics'
 
@@ -14,46 +13,12 @@ export default function Hero() {
   const [soundEnabled, setSoundEnabled] = useState(false) // has the user ever unmuted?
   const [showHint, setShowHint]     = useState(true)      // "click to enable sound" hint
   const [showContent, setShowContent] = useState(false)   // hero content appears after 10s
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0) // track which video is playing
 
   // ── Show all hero content after 8 seconds ──────────────────────────
   useEffect(() => {
     const t = setTimeout(() => setShowContent(true), 8000)
     return () => clearTimeout(t)
   }, [])
-
-  // ── Handle video sequence ────────────────────────────────────────
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const handleVideoEnd = () => {
-      const videos = HERO_CONFIG.backgroundVideo.videos
-      if (currentVideoIndex < videos.length - 1) {
-        // Move to next video
-        setCurrentVideoIndex(currentVideoIndex + 1)
-      }
-    }
-
-    video.addEventListener('ended', handleVideoEnd)
-    return () => video.removeEventListener('ended', handleVideoEnd)
-  }, [currentVideoIndex])
-
-  // ── Update video source when index changes ───────────────────────
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const currentVideo = HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]
-    if (currentVideo) {
-      // Use imported video file for the first video
-      video.src = currentVideoIndex === 0 ? chiruLogoVideo : currentVideo.src
-      video.load()
-      if (currentVideo.autoPlay) {
-        video.play().catch(err => console.log('Autoplay prevented:', err))
-      }
-    }
-  }, [currentVideoIndex])
 
   // ── Mute the video and mark as auto-muted-by-interaction ────────────
   const muteByInteraction = useCallback(() => {
@@ -103,15 +68,15 @@ export default function Hero() {
 
   return (
     <section id="hero">
-      {/* ── Video background — configured from data.js with sequence support ── */}
+      {/* ── Video background ── */}
       <video
         ref={videoRef}
         className="hero-video"
-        src={currentVideoIndex === 0 ? chiruLogoVideo : HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.src}
-        autoPlay={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.autoPlay}
-        muted={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.muted}
-        loop={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.loop}
-        playsInline={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.playsInline}
+        src={chiruLogoVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
         aria-hidden="true"
       />
 
