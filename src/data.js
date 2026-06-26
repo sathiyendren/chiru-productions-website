@@ -10,7 +10,7 @@ export const HERO_CONFIG = {
   backgroundVideo: {
     videos: [
       {
-        src: '/chiru-productions-website/chiru-logo.mp4',
+        src: './chiru-logo.mp4',
         autoPlay: true,
         muted: true,
         loop: false,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './Hero.css'
 import { HERO_CONFIG } from '../data'
+import chiruLogoVideo from '../assets/chiru-logo.mp4'
 import { trackNavClick, trackExternalLink } from '../utils/analytics'
 
 export default function Hero() {
@@ -45,7 +46,8 @@ export default function Hero() {
 
     const currentVideo = HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]
     if (currentVideo) {
-      video.src = currentVideo.src
+      // Use imported video file for the first video
+      video.src = currentVideoIndex === 0 ? chiruLogoVideo : currentVideo.src
       video.load()
       if (currentVideo.autoPlay) {
         video.play().catch(err => console.log('Autoplay prevented:', err))
@@ -105,7 +107,7 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="hero-video"
-        src={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.src}
+        src={currentVideoIndex === 0 ? chiruLogoVideo : HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.src}
         autoPlay={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.autoPlay}
         muted={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.muted}
         loop={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.loop}
