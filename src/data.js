@@ -5,6 +5,21 @@ export const GA_CONFIG = {
   DEBUG_MODE: false, // Set to true for debugging
 }
 
+// Hero Configuration
+export const HERO_CONFIG = {
+  backgroundVideo: {
+    videos: [
+      {
+        src: '/chiru-productions-website/chiru-logo.mp4',
+        autoPlay: true,
+        muted: true,
+        loop: false,
+        playsInline: true,
+      }
+    ]
+  }
+}
+
 export const FRAME_CONTENT = [
   { title: 'KALAM MAARI', year: '2024' },
   { title: 'IRUL NEEDHI',  year: '2023' },

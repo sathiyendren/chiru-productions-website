@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './Hero.css'
-import chiruLogoVideo from '../assets/chiru-logo.mp4'
+import { HERO_CONFIG } from '../data'
 import { trackNavClick, trackExternalLink } from '../utils/analytics'
 
 export default function Hero() {
@@ -13,12 +13,45 @@ export default function Hero() {
   const [soundEnabled, setSoundEnabled] = useState(false) // has the user ever unmuted?
   const [showHint, setShowHint]     = useState(true)      // "click to enable sound" hint
   const [showContent, setShowContent] = useState(false)   // hero content appears after 10s
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0) // track which video is playing
 
   // ── Show all hero content after 8 seconds ──────────────────────────
   useEffect(() => {
     const t = setTimeout(() => setShowContent(true), 8000)
     return () => clearTimeout(t)
   }, [])
+
+  // ── Handle video sequence ────────────────────────────────────────
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handleVideoEnd = () => {
+      const videos = HERO_CONFIG.backgroundVideo.videos
+      if (currentVideoIndex < videos.length - 1) {
+        // Move to next video
+        setCurrentVideoIndex(currentVideoIndex + 1)
+      }
+    }
+
+    video.addEventListener('ended', handleVideoEnd)
+    return () => video.removeEventListener('ended', handleVideoEnd)
+  }, [currentVideoIndex])
+
+  // ── Update video source when index changes ───────────────────────
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const currentVideo = HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]
+    if (currentVideo) {
+      video.src = currentVideo.src
+      video.load()
+      if (currentVideo.autoPlay) {
+        video.play().catch(err => console.log('Autoplay prevented:', err))
+      }
+    }
+  }, [currentVideoIndex])
 
   // ── Mute the video and mark as auto-muted-by-interaction ────────────
   const muteByInteraction = useCallback(() => {
@@ -68,15 +101,15 @@ export default function Hero() {
 
   return (
     <section id="hero">
-      {/* ── Video background — replace src with your own clip ── */}
+      {/* ── Video background — configured from data.js with sequence support ── */}
       <video
         ref={videoRef}
         className="hero-video"
-        src={chiruLogoVideo}
-        autoPlay
-        muted          /* must start muted for browser autoplay policy */
-        loop
-        playsInline
+        src={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.src}
+        autoPlay={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.autoPlay}
+        muted={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.muted}
+        loop={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.loop}
+        playsInline={HERO_CONFIG.backgroundVideo.videos[currentVideoIndex]?.playsInline}
         aria-hidden="true"
       />
 
@@ -113,7 +146,7 @@ export default function Hero() {
       </button>
 
       <div className={`hero-content container${showContent ? ' hero-content--visible' : ''}`}>
-        <div className="hero-eyebrow">Est. 2026 — Karnataka, India</div>
+        <div className="hero-eyebrow">Est. 2025 — Karnataka, India</div>
         <h1 className="hero-title">
           Stories That<br /><span>Move</span> The World
         </h1>

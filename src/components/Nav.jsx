@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './Nav.css'
 import { trackNavClick, trackMobileMenuToggle, trackExternalLink } from '../utils/analytics'
+import chiruLogo from '../assets/chiru-trans-logo-website.png'
 
 const HOME_LINKS = [
   ['#films',    'Films'],
@@ -61,10 +62,10 @@ export default function Nav({ page, navigate }) {
   return (
     <nav ref={navRef}>
       <a href="#" className="nav-logo" onClick={handleLogoClick}>
-        <div className="nav-logo-icon" aria-hidden="true">
-          {[...Array(8)].map((_, i) => <div key={i} />)}
+        <img src={chiruLogo} alt="Chiru Productions" className="nav-logo-image" />
+        <div className="nav-logo-text">
+          Chiru <span>Productions</span>
         </div>
-        Chiru <span>Productions</span>
       </a>
 
       <ul className="nav-links">
